@@ -1,0 +1,38 @@
+spring:
+  # thymeleaf����
+  thymeleaf:
+    # �رջ���
+    cache: false
+
+  # ����Դ����
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.238.133:3308/seckill?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+    hikari:
+      pool-name: DateHikariCP
+      # ��С�������ӳ�
+      minimum-idle: 5
+      # �������Ӵ�����ʱ�䣬Ĭ��600000��10���ӣ�
+      idle-timeout: 1800000
+      # �����������Ĭ��10
+      maximum-pool-size: 10
+      # �����ӳط��ص������Զ��ύ
+      auto-commit: true
+      # ���������ʱ�䣬0��ʾ���ô�Ĭ��1800000(30����)
+      max-lifetime: 1800000
+      # ���ӳ�ʱʱ�䣬Ĭ��30��
+      connection-timeout: 30000
+      # ���������Ƿ���õĲ�ѯ���
+      connection-test-query: SELECT 1
+
+mybatis-plus:
+  # ����Mapper.xml ӳ������
+  mapper-locations: classpath*/mapper/*Mapper.xml
+  # ����mybatis���ݷ������ͱ�����������
+  type-aliases-package: com.example.seckill.pojo
+# MyBatis Sql ��ӡ�������ӿ����ڵİ�������Mapper.xml���ڵİ���
+logging:
+  level:
+    com.example.seckill.mapper: debug
