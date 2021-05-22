@@ -2,6 +2,8 @@ package com.example.seckill.vo;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @author by liuguangjin
  * @Description 接收登陆对象
@@ -9,6 +11,8 @@ import lombok.Data;
  */
 @Data
 public class LoginVo {
+    @NotNull
     private String mobile;
+    @NotNull
     private String password;
 }

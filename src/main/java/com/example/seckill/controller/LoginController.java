@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.Valid;
+
 /**
  * @author by liuguangjin
  * @Description TODO
@@ -41,7 +43,7 @@ public class LoginController {
      */
     @RequestMapping("/doLogin")
     @ResponseBody
-    public RespBean doLogin(LoginVo loginVo){
+    public RespBean doLogin(@Valid LoginVo loginVo){
         //模拟前端第一次加密密码
         loginVo.setPassword(MD5Util.inputPassToFormPass(loginVo.getPassword()));
         log.info("{}",loginVo);

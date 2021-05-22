@@ -27,6 +27,23 @@ spring:
       # ���������Ƿ���õĲ�ѯ���
       connection-test-query: SELECT 1
 
+  redis:
+    host: 192.168.238.133
+    port: 6379
+    database: 0
+    #��ʱʱ��
+    timeout: 100000ms
+    lettuce:
+      pool:
+        #�����������Ĭ��8
+        max-active: 8
+        #������������ȴ�ʱ��
+        max-wait: 10000ms
+        #����������
+        max-idle: 200
+        #��С
+        min-idle: 0
+
 mybatis-plus:
   # ����Mapper.xml ӳ������
   mapper-locations: classpath*/mapper/*Mapper.xml
