@@ -4,8 +4,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.seckill.mapper.UserMapper;
 import com.example.seckill.pojo.User;
 import com.example.seckill.service.IUserService;
+import com.example.seckill.utils.MD5Util;
 import com.example.seckill.vo.LoginVo;
 import com.example.seckill.vo.RespBean;
+import com.example.seckill.vo.RespBeanEnum;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,6 +24,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public RespBean doLogin(LoginVo loginVo) {
-        return null;
+        String mobile = loginVo.getMobile();
+        String password = loginVo.getPassword();
+
+        User user = this.getById(mobile);
+
+        if (null==user){
+            return RespBean.error(RespBeanEnum.ERROR);
+        }
+        if (!MD5Util.formPassToDbPass(password,user.getSlat()).equals(user.getPassword())){
+            return RespBean.error(RespBeanEnum.ERROR);
+        }
+
+        return RespBean.success();
     }
 }
