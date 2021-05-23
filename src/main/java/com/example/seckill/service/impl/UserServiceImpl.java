@@ -9,6 +9,7 @@ import com.example.seckill.vo.LoginVo;
 import com.example.seckill.vo.RespBean;
 import com.example.seckill.vo.RespBeanEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotBlank;
@@ -26,6 +27,8 @@ import javax.validation.constraints.NotNull;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
+    @Autowired
+    private RedisTemplate redisTemplate;
     @Override
     public RespBean doLogin(LoginVo loginVo) {
         String mobile = loginVo.getMobile();
